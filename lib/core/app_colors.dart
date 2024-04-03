@@ -6,6 +6,7 @@ class AppColors {
   static const backgroundColor = Color.fromARGB(161, 7, 4, 120);
   static const headingTextColor = Color.fromARGB(255, 51, 153, 221);
   static const primaryTextColor = Color(0xfffffffff);
+  static const mainColor = Color(0xFFFDFD96);
   static const secondaryTextColor = Color.fromARGB(111, 255, 255, 255);
   static const boardColor1 = Color.fromARGB(255, 255, 255, 255);
   static const boardColor2 = Color.fromARGB(255, 251, 233, 69);

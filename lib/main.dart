@@ -1,3 +1,5 @@
+import 'package:daily_task_manager/module/detail/presentation/detail_controller.dart';
+import 'package:daily_task_manager/module/detail/presentation/detail_screen.dart';
 import 'package:daily_task_manager/module/home/presentation/screen/home_controller.dart';
 import 'package:daily_task_manager/module/home/presentation/screen/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +14,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context)=>HomeProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (context)=>HomeProvider() ),
+        ChangeNotifierProvider(create: (context)=>DetailProvider() )
+        ],
       child: const MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: DetailScreen(),
       ),
     );
   }
