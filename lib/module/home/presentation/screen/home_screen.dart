@@ -1,5 +1,7 @@
 import 'package:daily_task_manager/core/app_colors.dart';
+import 'package:daily_task_manager/module/home/presentation/screen/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<HomeProvider>();
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
@@ -86,7 +89,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(top: 100),
+              padding: EdgeInsets.only(top: 80),
               child: Text("Good\nMorning",
                   softWrap: true,
                   style: TextStyle(
@@ -97,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                       letterSpacing: 2.0)),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -129,6 +132,99 @@ class _HomePageState extends State<HomePage> {
                   ],
                 )
               ],
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide(color: Colors.blue))),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 30,
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.horizontal(
+                                  left: Radius.circular(10),
+                                  right: Radius.circular(10))),
+                          child: const Center(
+                              child: Text(
+                            "12",
+                            style: TextStyle(fontSize: 13),
+                          )),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        const Text(
+                          "Tasks",
+                          style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w300,
+                              color: AppColors.headingTextColor),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.centerRight,
+                    decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide(color: Colors.red))),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 50,
+                        ),
+                        Container(
+                          width: 30,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border(
+                                  bottom: BorderSide(
+                                      color: AppColors.secondaryTextColor),
+                                  top: BorderSide(
+                                      color: AppColors.secondaryTextColor),
+                                  left: BorderSide(
+                                      color: AppColors.secondaryTextColor),
+                                  right: BorderSide(
+                                      color: AppColors.secondaryTextColor))),
+                          child: const Center(
+                              child: Text(
+                            "3",
+                            style:
+                                TextStyle(color: AppColors.secondaryTextColor),
+                          )),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        const Text(
+                          "Boards",
+                          style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w300,
+                              color: AppColors.secondaryTextColor),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Expanded(
+              child: Container(
+                child: provider.sections.first,
+              ),
             )
           ],
         ),
