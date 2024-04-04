@@ -1,17 +1,18 @@
-import 'package:daily_task_manager/core/app_colors.dart';
 import 'package:daily_task_manager/module/detail/presentation/detail_controller.dart';
+import 'package:daily_task_manager/module/home/domain/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+  final User user;
+  const DetailScreen({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
     final detailProvider = context.watch<DetailProvider>();
     return Material(
-      color: AppColors.mainColor.withOpacity(0.9),
+      color: user.userColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 70),
         child: SingleChildScrollView(
@@ -52,20 +53,16 @@ class DetailScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.circular(30)),
-                child: const Center(child: Text('Sweet Home')),
+                child: Center(child: Text(user.taskAllocation)),
               ),
               const SizedBox(height: 25),
-              const Text("Grocery\nShopping",
+              Text(user.taskDescription,
                   softWrap: true,
-                  textHeightBehavior: TextHeightBehavior(
-                      applyHeightToFirstAscent: false,
-                      applyHeightToLastDescent: false),
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 70,
                       color: Colors.black,
                       height: 0.9,
                       inherit: false,
-                      wordSpacing: -5.0,
                       letterSpacing: 2.0)),
               const SizedBox(height: 30),
               const Row(
@@ -90,48 +87,55 @@ class DetailScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "2h 45m",
-                        style: TextStyle(
+                        user.taskDate!,
+                        style: const TextStyle(
                             fontSize: 40,
                             color: Colors.black,
                             fontWeight: FontWeight.w700),
                       ),
-                      Text("Dec 12, 2022",
+                      const Text("Dec 12, 2022",
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.black,
                               fontWeight: FontWeight.w500))
                     ],
                   ),
-                  Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: Image.asset(
-                          "assets/img1.jpg",
-                          height: 60,
-                          width: 60,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Positioned(
-                        right: 10,
-                        top: 1,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.asset(
-                            "assets/img3.jpg",
-                            height: 60,
-                            width: 60,
-                            fit: BoxFit.fill,
+                  SizedBox(
+                    height: 70,
+                    width: 70,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          right: 0.0,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.asset(
+                              "assets/img1.jpg",
+                              height: 40,
+                              width: 40,
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
-                      )
-                    ],
+                        Positioned(
+                          right: 30,
+                          top: 1,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.asset(
+                              "assets/img3.jpg",
+                              height: 40,
+                              width: 40,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -180,7 +184,7 @@ class DetailScreen extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(50),
                     child: Image.asset(
-                      "assets/img1.jpg",
+                      user.userImage[0],
                       height: 30,
                       width: 30,
                       fit: BoxFit.fill,
