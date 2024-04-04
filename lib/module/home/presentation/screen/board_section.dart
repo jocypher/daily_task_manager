@@ -9,13 +9,12 @@ class BoardSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeProvider = context.watch<HomeProvider>();
-    return Expanded(child:
-    ListView.builder(
-      itemCount: 3,
-      shrinkWrap: true,
-      itemBuilder: (context, index){
-      return const BoardWidget();
-    })
-    );
+    return ListView.builder(
+        itemCount: 3,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          final user = homeProvider.users[index];
+          return  BoardWidget(user: user);
+        });
   }
 }

@@ -1,5 +1,5 @@
 import 'package:daily_task_manager/module/detail/presentation/detail_controller.dart';
-import 'package:daily_task_manager/module/detail/presentation/detail_screen.dart';
+
 import 'package:daily_task_manager/module/home/presentation/screen/home_controller.dart';
 import 'package:daily_task_manager/module/home/presentation/screen/home_screen.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,7 @@
 import 'package:daily_task_manager/core/app_colors.dart';
+import 'package:daily_task_manager/module/home/presentation/screen/board_section.dart';
 import 'package:daily_task_manager/module/home/presentation/screen/home_controller.dart';
+import 'package:daily_task_manager/module/home/presentation/screen/task_section.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,93 +18,105 @@ class _HomePageState extends State<HomePage> {
     final provider = context.watch<HomeProvider>();
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 60),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Icon(Icons.person),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        height: 30,
-                        width: 30,
-                        child: Stack(
-                          fit: StackFit.loose,
-                          children: [
-                            Container(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15, top: 60),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.asset(
+                    "assets/img3.jpg",
+                    height: 40,
+                    width: 40,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 30,
+                      width: 30,
+                      child: Stack(
+                        fit: StackFit.loose,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: AppColors.backgroundColor2,
+                                borderRadius: BorderRadius.circular(100)),
+                            child: const Center(
+                              child: Icon(
+                                Icons.notifications_outlined,
+                                size: 15,
+                                color: AppColors.primaryTextColor,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 20,
+                            right: 4,
+                            child: Container(
+                              width: 20,
                               decoration: BoxDecoration(
-                                  color: AppColors.boardColor2,
-                                  borderRadius: BorderRadius.circular(100)),
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: AppColors.headingTextColor),
                               child: const Center(
-                                child: Icon(
-                                  Icons.notifications_outlined,
-                                  color: AppColors.primaryTextColor,
+                                child: Text(
+                                  "12",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: AppColors.primaryTextColor),
                                 ),
                               ),
                             ),
-                            Positioned(
-                              top: 20,
-                              right: 4,
-                              child: Container(
-                                width: 20,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    color: AppColors.headingTextColor),
-                                child: const Center(
-                                  child: Text(
-                                    "12",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 10),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 1,
+                    ),
+                    Container(
+                      height: 30,
+                      width: 30,
+                      decoration: BoxDecoration(
+                          color: AppColors.backgroundColor2,
+                          borderRadius: BorderRadius.circular(100)),
+                      child: const Center(
+                        child: Icon(
+                          Icons.add,
+                          size: 15,
+                          color: AppColors.primaryTextColor,
                         ),
                       ),
-                      const SizedBox(
-                        width: 1,
-                      ),
-                      Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            color: AppColors.boardColor2,
-                            borderRadius: BorderRadius.circular(100)),
-                        child: const Center(
-                          child: Icon(
-                            Icons.add,
-                            color: AppColors.primaryTextColor,
-                          ),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
+                    )
+                  ],
+                )
+              ],
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 80),
-              child: Text("Good\nMorning",
-                  softWrap: true,
-                  style: TextStyle(
-                      fontSize: 70,
-                      color: AppColors.boardColor2,
-                      inherit: false,
-                      wordSpacing: -5.0,
-                      letterSpacing: 2.0)),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Row(
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 15, right: 15, top: 60),
+            child: Text("Good\nMorning",
+                softWrap: true,
+                style: TextStyle(
+                    fontSize: 70,
+                    color: AppColors.headingTextColor,
+                    inherit: false,
+                    height: 0.9,
+                    letterSpacing: 2.0)),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 15, right: 15),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
@@ -110,39 +124,50 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Text(
                       "Today's Monday",
-                      style: TextStyle(color: AppColors.primaryTextColor),
+                      style: TextStyle(
+                          color: AppColors.primaryTextColor, fontSize: 15),
                     ),
                     Text(
                       "Dec 12, 2002",
-                      style: TextStyle(color: AppColors.secondaryTextColor),
+                      style: TextStyle(color: AppColors.subprimaryTextColor),
                     )
                   ],
                 ),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       "75% Done",
-                      style: TextStyle(color: AppColors.primaryTextColor),
+                      style: TextStyle(
+                          color: AppColors.primaryTextColor, fontSize: 15),
                     ),
                     Text(
                       "Completed Tasks",
-                      style: TextStyle(color: AppColors.secondaryTextColor),
+                      style: TextStyle(
+                          color: AppColors.subprimaryTextColor,
+                          letterSpacing: 0.5),
                     )
                   ],
                 )
               ],
             ),
-            const SizedBox(
-              height: 40,
-            ),
-            Row(
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Container(
-                    decoration: const BoxDecoration(
-                        border: Border(bottom: BorderSide(color: Colors.blue))),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: provider.npage == 0
+                                    ? AppColors.primaryTextColor
+                                    : AppColors.secondaryTextColor))),
                     child: Row(
                       children: [
                         Container(
@@ -161,12 +186,17 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(
                           width: 5,
                         ),
-                        const Text(
-                          "Tasks",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w300,
-                              color: AppColors.headingTextColor),
+                        GestureDetector(
+                          onTap: () {
+                            context.read<HomeProvider>().updatePage(0);
+                          },
+                          child: const Text(
+                            "Tasks",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w300,
+                                color: AppColors.primaryHeadingText),
+                          ),
                         )
                       ],
                     ),
@@ -175,8 +205,12 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                   child: Container(
                     alignment: Alignment.centerRight,
-                    decoration: const BoxDecoration(
-                        border: Border(bottom: BorderSide(color: Colors.red))),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: provider.npage == 1
+                                    ? AppColors.primaryTextColor
+                                    : AppColors.secondaryTextColor))),
                     child: Row(
                       children: [
                         const SizedBox(
@@ -205,12 +239,17 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(
                           width: 5,
                         ),
-                        const Text(
-                          "Boards",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w300,
-                              color: AppColors.secondaryTextColor),
+                        GestureDetector(
+                          onTap: () {
+                            context.read<HomeProvider>().updatePage(1);
+                          },
+                          child: const Text(
+                            "Boards",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w300,
+                                color: AppColors.secondaryTextColor),
+                          ),
                         )
                       ],
                     ),
@@ -218,16 +257,12 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            Expanded(
-              child: Container(
-                child: provider.sections.first,
-              ),
-            )
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Expanded(child: provider.sections[provider.npage])
+        ],
       ),
     );
   }
