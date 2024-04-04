@@ -1,4 +1,5 @@
 import 'package:daily_task_manager/core/app_colors.dart';
+import 'package:daily_task_manager/module/detail/presentation/detail_screen.dart';
 import 'package:daily_task_manager/module/home/presentation/screen/home_controller.dart';
 import 'package:daily_task_manager/module/home/presentation/widget/task_widget.dart';
 import 'package:flutter/material.dart';
@@ -108,12 +109,20 @@ class TaskSection extends StatelessWidget {
             child: Padding(
           padding: const EdgeInsets.only(left: 8, right: 8),
           child: ListView.builder(
-              itemCount: 3,
+              itemCount: homeProvider.users.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 final user = homeProvider.users[index];
-                return TaskWidget(
-                  user: user,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                      return DetailScreen(user: user);
+                    }));
+                  },
+                  child: TaskWidget(
+                    user: user,
+                  ),
                 );
               }),
         ))

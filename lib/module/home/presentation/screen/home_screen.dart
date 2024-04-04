@@ -1,7 +1,5 @@
 import 'package:daily_task_manager/core/app_colors.dart';
-import 'package:daily_task_manager/module/home/presentation/screen/board_section.dart';
 import 'package:daily_task_manager/module/home/presentation/screen/home_controller.dart';
-import 'package:daily_task_manager/module/home/presentation/screen/task_section.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,35 +16,46 @@ class _HomePageState extends State<HomePage> {
     final provider = context.watch<HomeProvider>();
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.headingTextColor,
+        shape: const CircleBorder(),
+        onPressed: () {},
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 15, right: 15, top: 60),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.asset(
-                    "assets/img3.jpg",
-                    height: 40,
-                    width: 40,
-                    fit: BoxFit.fill,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.asset(
+                      "assets/img3.jpg",
+                      height: 40,
+                      width: 40,
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
+                  Row(children: [
                     SizedBox(
-                      height: 30,
-                      width: 30,
+                      height: 47,
+                      width: 47,
                       child: Stack(
+                        alignment: Alignment.center,
                         fit: StackFit.loose,
                         children: [
                           Container(
+                            height: 35,
+                            width: 35,
                             decoration: BoxDecoration(
-                                color: AppColors.backgroundColor2,
+                                color: AppColors.topIconColor,
                                 borderRadius: BorderRadius.circular(100)),
                             child: const Center(
                               child: Icon(
@@ -57,8 +66,8 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Positioned(
-                            top: 20,
-                            right: 4,
+                            top: 33,
+                            right: 12,
                             child: Container(
                               width: 20,
                               decoration: BoxDecoration(
@@ -78,27 +87,31 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      width: 1,
-                    ),
-                    Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                          color: AppColors.backgroundColor2,
-                          borderRadius: BorderRadius.circular(100)),
-                      child: const Center(
-                        child: Icon(
-                          Icons.add,
-                          size: 15,
-                          color: AppColors.primaryTextColor,
-                        ),
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
+                    SizedBox(
+                        height: 47,
+                        width: 47,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Container(
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                color: AppColors.topIconColor,
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.add,
+                                  size: 15,
+                                  color: AppColors.primaryTextColor,
+                                ),
+                              ),
+                            )
+                          ],
+                        ))
+                  ]),
+                ]),
           ),
           const Padding(
             padding: EdgeInsets.only(left: 15, right: 15, top: 60),
@@ -172,15 +185,25 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Container(
                           width: 30,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.horizontal(
+                          decoration: BoxDecoration(
+                              color: provider.npage == 0
+                                  ? Colors.white
+                                  : Colors.transparent,
+                              border: Border.all(
+                                  color: provider.npage != 0
+                                      ? AppColors.secondaryTextColor
+                                      : Colors.white),
+                              borderRadius: const BorderRadius.horizontal(
                                   left: Radius.circular(10),
                                   right: Radius.circular(10))),
-                          child: const Center(
+                          child: Center(
                               child: Text(
                             "12",
-                            style: TextStyle(fontSize: 13),
+                            style: TextStyle(
+                                fontSize: 13,
+                                color: provider.npage != 0
+                                    ? AppColors.secondaryTextColor
+                                    : Colors.black),
                           )),
                         ),
                         const SizedBox(
@@ -218,22 +241,27 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Container(
                           width: 30,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color: AppColors.secondaryTextColor),
-                                  top: BorderSide(
-                                      color: AppColors.secondaryTextColor),
-                                  left: BorderSide(
-                                      color: AppColors.secondaryTextColor),
-                                  right: BorderSide(
-                                      color: AppColors.secondaryTextColor))),
-                          child: const Center(
+                              border: provider.npage == 0
+                                  ? const Border(
+                                      bottom: BorderSide(
+                                          color: AppColors.secondaryTextColor),
+                                      top: BorderSide(
+                                          color: AppColors.secondaryTextColor),
+                                      left: BorderSide(
+                                          color: AppColors.secondaryTextColor),
+                                      right: BorderSide(
+                                          color: AppColors.secondaryTextColor))
+                                  : const Border(),
+                              color: provider.npage == 0 ? null : Colors.white),
+                          child: Center(
                               child: Text(
                             "3",
-                            style:
-                                TextStyle(color: AppColors.secondaryTextColor),
+                            style: TextStyle(
+                                color: provider.npage == 0
+                                    ? AppColors.secondaryTextColor
+                                    : AppColors.topIconColor),
                           )),
                         ),
                         const SizedBox(

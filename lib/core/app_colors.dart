@@ -16,7 +16,9 @@ class AppColors {
   static const checkBackgroundColor = Color.fromRGBO(166,214,232,1.0);
   static const checkColor =Color.fromRGBO(46,58,74,1.0);
   static const subprimaryTextColor =Color.fromRGBO(77,87,107,1.0);
+  static const topIconColor =Color.fromRGBO(35,43,67,1.0);
 }
+
 
 
 

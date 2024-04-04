@@ -23,22 +23,24 @@ class HomeProvider extends ChangeNotifier {
     User(
         userImage: ["assets/img1.jpg"],
         userColor: AppColors.primaryTextColor,
-        taskDescription: "taskDescription",
+        taskDescription: "Walk My Dog",
         taskDate: '1h 45m',
+        activeTask: 2,
         taskAllocation: "Work"),
     User(
-        userImage: ["assets/img1.jpg", "assets/img2.jpg"],
+        userImage: ["assets/img2.jpg", "assets/img1.jpg"],
         userColor: AppColors.boardColor3,
-        taskDescription: "taskDescription",
+        taskDescription: "Grocery Shopping",
         taskDate: '1h 45m',
-        taskAllocation: "Work"),
+        activeTask: 4,
+        taskAllocation: "Myself"),
     User(
         userImage: ["assets/img1.jpg", "assets/img2.jpg", "assets/img3.jpg"],
         userColor: AppColors.boardColor2,
-        taskDescription: "taskDescription",
-        activeTask: 4,
+        taskDescription: "Business Manage",
+        activeTask: 6,
         taskDate: '1h 45m',
-        taskAllocation: "Work")
+        taskAllocation: "Home")
   ];
 
   List<Map<String, String>> weekList = [

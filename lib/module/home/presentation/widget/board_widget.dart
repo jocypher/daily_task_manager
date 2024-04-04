@@ -35,15 +35,52 @@ class BoardWidget extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.asset(
-                      user.userImage[0],
-                      height: 40,
-                      width: 40,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                  user.userImage.length == 1
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.asset(
+                            user.userImage[0],
+                            height: 40,
+                            width: 40,
+                            fit: BoxFit.fill,
+                          ),
+                        )
+                      : SizedBox(
+                          height: 40,
+                          width: 140,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: user.userImage.length,
+                            itemBuilder: (context, index) {
+                              if (index == 0) {
+                                return Positioned(
+                                  right: 0.0,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: Image.asset(
+                                      user.userImage[0],
+                                      height: 40,
+                                      width: 40,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                return Positioned(
+                                  right: index * 10,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: Image.asset(
+                                      user.userImage[index],
+                                      height: 40,
+                                      width: 40,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                          )),
                 ],
               ),
               const Padding(
